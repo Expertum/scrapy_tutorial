@@ -3,9 +3,11 @@ import scrapy
 from tutorial.items import DmozItem
 
 class DmozSpider(scrapy.Spider):
-    name = "dmoz1"
+    name = "dmoz3"
     allowed_domains = ["dmoz.org"]
-    start_urls = ["http://www.dmoz.org/Computers/Programming/Languages"]
+    f = open("urls.txt")
+    start_urls = [url.strip() for url in f.readlines()]
+    f.close()
 
     def parse(self, response):
         for sel in response.xpath('//ul/li'):
